@@ -16,21 +16,13 @@ var Circle = React.createClass({
 	componentDidMount: function() {
 		var circle = d3.select(this.getDOMNode())
 
-		circle.attr({
-			cx: this.getRandomPoint(),
-			cy: this.getRandomPoint(),
-			opacity: 0
-		})
+		circle.attr('transform', 'translate(' + this.getRandomPoint() + ',' + this.getRandomPoint() + ')');
 
 		var animate = circle.transition().ease('elastic').duration(function(d, i) {
 			return 2000 + Math.random() * -1000
 		});
 
-		animate.attr({
-			cx: this.props.cx,
-			cy: this.props.cy,
-			opacity: 1
-		});
+		animate.attr('transform', 'translate(0,0)');
 	},
 
 	render: function() {
