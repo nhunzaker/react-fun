@@ -52,7 +52,7 @@
 				while (data.length < 200) {
 					data.push({
 						y: range + Math.cos((Date.now() + (data.length * range)) / speed) * range,
-						magnitude: 3 + Math.random() * 4
+						magnitude: 4 + Math.sin((Date.now() + data.length * range) / speed) * 3
 					});
 				}
 
