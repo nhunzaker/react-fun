@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 
 var Circle = React.createClass({
-    getDefaultProps: function() {
-        return {
-            r: 1,
-            cx: 0,
-            cy: 0
-        };
-    },
+	getDefaultProps: function() {
+		return {
+			r: 1,
+			cx: 0,
+			cy: 0
+		};
+	},
 
 	getRandomPoint: function() {
 		return Math.random() * 1000 - 500;
@@ -33,7 +33,7 @@ var Circle = React.createClass({
 		});
 	},
 
-    render: function() {
-        return <circle r={this.props.r} cx={this.props.cx} cy={this.props.cy} />
-    }
+	render: function() {
+		return <circle r={this.props.r} cx={this.props.cx} cy={this.props.cy} />
+	}
 });

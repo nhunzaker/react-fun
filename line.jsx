@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
 var Line = React.createClass({
-    getDefaultProps: function() {
-        return {
-            path: ''
-        }
-    },
+	getDefaultProps: function() {
+		return {
+			path: ''
+		}
+	},
 
 	componentDidMount: function() {
 		var line = d3.select(this.getDOMNode())
@@ -19,7 +19,7 @@ var Line = React.createClass({
 		});
 	},
 
-    render: function() {
-        return <path d={this.props.path} />;
-    }
+	render: function() {
+		return <path d={this.props.path} />;
+	}
 });

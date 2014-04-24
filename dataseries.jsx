@@ -25,7 +25,7 @@ var DataSeries = React.createClass({
 
 		return <g>
 			<Line path={path(this.props.data)} />
-		    {circles}
+			{circles}
 		</g>;
 	}
 });
