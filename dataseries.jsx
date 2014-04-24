@@ -10,8 +10,7 @@ var DataSeries = React.createClass({
 	},
 
 	render: function() {
-		var self = this,
-			props = this.props,
+		var props  = this.props,
 			yScale = props.yScale,
 			xScale = props.xScale;
 
@@ -20,7 +19,7 @@ var DataSeries = React.createClass({
 			.y(function(d) { return yScale(d.y); })
 			.interpolate(this.props.interpolate);
 
-		var circles = data.map(function(d, i) {
+		var circles = this.props.data.map(function(d, i) {
 			return <Circle key={i} cx={xScale(i)} cy={yScale(d.y)} r={d.magnitude} />;
 		});
 

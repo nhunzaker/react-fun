@@ -13,7 +13,7 @@ var LineChart = React.createClass({
 		var data   = this.props.data;
 		var size   = { width: this.props.width, height: this.props.height };
 		var xScale = d3.scale.linear()
-                       .domain([0, this.props.data.length])
+                       .domain([0, data.length])
                        .range([this.props.padding, this.props.width - this.props.padding]);
 
 		var yScale = d3.scale.linear()
