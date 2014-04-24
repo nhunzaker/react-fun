@@ -39,22 +39,24 @@
 
 		<script type="text/jsx">
 			var stats   = new Stats();
-			var width	= window.innerWidth;
-			var height	= 500;
+			var width   = window.innerWidth;
+			var height  = 500;
 			var padding = 60;
 
 			function sample() {
 				var data  = [];
-
 				var depth = 4;
 				var speed = 1000;
 				var time  = Date.now();
 				var wave  = 100;
+				var i = 0, k;
 
-				while (data.length < 200) {
+				while (i++ < 200) {
+					k = (time + data.length * wave) / speed;
+
 					data.push({
-						y: wave + Math.cos((time + (data.length * wave)) / speed) * wave,
-						magnitude: depth + Math.sin((time + data.length * wave) / speed) * depth
+						y : wave + Math.cos(k) * wave,
+						magnitude: depth + Math.sin(k) * depth
 					});
 				}
 
