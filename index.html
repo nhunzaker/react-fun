@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React + d3</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.8.0/react.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.8.0/JSXTransformer.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.13/d3.js"></script>
+		<script src="stats.js"></script>
+		<style>
+			body {
+				background: #d44;
+				font: 100 12px 'Helvetica Neue', sans-serif;
+				letter-spacing: 5px;
+				text-transform: uppercase;
+			}
+
+			path {
+				stroke: rgba(255, 255, 255, 0.75);
+				stroke-width: 1.5;
+				fill: none;
+			}
+
+			circle {
+				fill: #FCECEC;
+				stroke: #d44;
+				stroke-width: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"> </div>
+		<script type="text/jsx" src="chart.jsx"></script>
+		<script type="text/jsx" src="line.jsx"></script>
+		<script type="text/jsx" src="circle.jsx"></script>
+		<script type="text/jsx" src="dataseries.jsx"></script>
+		<script type="text/jsx" src="linechart.jsx"></script>
+
+		<script type="text/jsx">
+			var width	= window.innerWidth;
+			var height	= 500;
+			var padding = 60;
+			var data	= [];
+
+			function sample() {
+				data = [];
+				var range = 100;
+				var speed = 1000;
+
+				while (data.length < 200) {
+					data.push({
+						y: range + Math.cos((Date.now() + (data.length * range)) / speed) * range,
+						magnitude: 3 + Math.random() * 4
+					});
+				}
+
+				return data;
+			}
+
+			var mounted = React.renderComponent(LineChart({
+				data: sample(),
+				padding: padding,
+				width: width,
+				height: height
+			}), document.getElementById('container'));
+
+			requestAnimationFrame(function loop() {
+				stats.begin();
+				mounted.setProps({ data: sample() });
+				stats.end();
+				requestAnimationFrame(loop);
+			})
+
+			var stats = new Stats();
+			stats.setMode(0); // 0: fps, 1: ms
+
+			// Align top-left
+			stats.domElement.style.position = 'absolute';
+			stats.domElement.style.left = '0px';
+			stats.domElement.style.top = '0px';
+
+			document.body.appendChild( stats.domElement );
+		</script>
+	</body>
+</html>
