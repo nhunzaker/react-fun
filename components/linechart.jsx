@@ -1,4 +1,4 @@
-/** @jsx React.DIM */
+/** @jsx React.DOM */
 
 var LineChart = React.createClass({
 	getDefaultProps: function() {
