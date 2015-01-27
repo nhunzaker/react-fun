@@ -1,95 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>React + d3</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.10.0/react.js"></script>
-		<script src="vendor/JSXTransformer.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.13/d3.js"></script>
-		<script src="stats.js"></script>
-		<style>
-			body {
-				background: #d44;
-				font: 100 12px 'Helvetica Neue', sans-serif;
-				letter-spacing: 5px;
-				text-transform: uppercase;
-			}
-
-			path {
-				stroke: rgba(255, 255, 255, 0.75);
-				stroke-width: 1.5;
-				fill: none;
-			}
-
-			circle {
-				fill: #FCECEC;
-				stroke: #d44;
-				stroke-width: 2;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="container"></div>
-
-		<script type="text/jsx" src="components/chart.jsx"></script>
-		<script type="text/jsx" src="components/line.jsx"></script>
-		<script type="text/jsx" src="components/circle.jsx"></script>
-		<script type="text/jsx" src="components/trendline.jsx"></script>
-        <script type="text/jsx" src="components/scatterplot.jsx"></script>
-		<script type="text/jsx" src="components/linechart.jsx"></script>
-
-		<script type="text/jsx">
-			var stats   = new Stats();
-			var width   = window.innerWidth;
-			var height  = 500;
-			var padding = 60;
-
-			function sample() {
-				var data  = [];
-				var depth = 4;
-				var speed = 1000;
-				var time  = Date.now();
-				var wave  = 100;
-				var i = 0, k;
-
-				while (i++ < 200) {
-					k = (time + data.length * wave) / speed;
-
-					data.push({
-						y : wave + Math.cos(k) * wave,
-						magnitude: depth + Math.sin(k) * depth
-					});
-				}
-
-				return data;
-			}
-
-			var mounted = React.renderComponent(LineChart({
-				data: sample(),
-				height: height,
-				padding: padding,
-				width: width
-			}), document.getElementById('container'));
-
-			requestAnimationFrame(function loop() {
-				stats.begin();
-				mounted.setProps({ data: sample() });
-				stats.end();
-
-				requestAnimationFrame(loop);
-			})
-
-			// Align top-left
-			d3.select(stats.domElement).style({
-				left: 0,
-				position: 'absolute',
-				top: 0
-			});
-
-			document.body.appendChild(stats.domElement);
-		</script>
-
-		<a href="https://github.com/nhunzaker/d3-react-fun"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title>React + d3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        background: #d44;
+        font: 100 12px 'Helvetica Neue', sans-serif;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+      }
+      circle {
+        fill: #FCECEC;
+        stroke: #d44;
+        stroke-width: 2;
+        transition: 0.7s all;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="dist/app.js"></script>
+  </body>
 </html>
