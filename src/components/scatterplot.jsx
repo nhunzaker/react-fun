@@ -6,9 +6,9 @@ var ScatterPlot = React.createClass({
     return <circle key={ i } cx={ point.x } cy={ point.y } r={ point.size } />
   },
 
-	render: function() {
-		return <g>{ this.props.data.map(this.getCircle) }</g>
-	}
+  render: function() {
+    return <g>{ this.props.data.map(this.getCircle) }</g>
+  }
 
 })
 
