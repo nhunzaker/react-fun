@@ -1,7 +1,7 @@
 var Webpack = require('webpack')
 
 module.exports = {
-  devtool: 'eval',
+  devtool: '#eval-source-map',
 
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
@@ -23,24 +23,14 @@ module.exports = {
 
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
-    new Webpack.ProvidePlugin({
-      to5Runtime: "imports?global=>{}!exports-loader?global.to5Runtime!6to5/runtime"
-    })
   ],
 
   module: {
-    preLoaders: [
-      {
-        test: /\.jsx*$/,
-        exclude : /node_modules/,
-        loader: "source-map-loader"
-      }
-    ],
     loaders: [
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : 'react-hot!envify!6to5?experimental&runtime&modules=common',
+        loader  : 'react-hot!babel?stage=1'
       },
       {
         test    : /\.json$/,
